@@ -8,6 +8,7 @@ class Player(object):
         self.health = health
         
     def get_stats(self):
+    	""" Return player's current level and health. """
         return "You are level %d and your health is %d." % (self.level, self.health)
 
 class Monster(object):

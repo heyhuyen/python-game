@@ -5,7 +5,8 @@ import re
 import string
 from random import randint
 
-class RPS(object):
+
+class RockPaperScissors(object):
     
     def __init__(self):
         self.whatbeats = {'paper': 'scissors',
@@ -13,7 +14,8 @@ class RPS(object):
                 'rock': 'paper'}
         self.objects = ("rock", "paper", "scissors")
 
-    def determine_winner(self, hand_a, hand_b):
+    def get_winner(self, hand_a, hand_b):
+    	""" Compare hand_a and hand_b and return the winner. """
         if hand_b == self.whatbeats[hand_a]:
             return 1
         elif hand_a == self.whatbeats[hand_b]:
@@ -22,6 +24,7 @@ class RPS(object):
             return -1
 
     def play(self):
+    	""" Loop to play a single round of rock, paper, scissors and returns win status. """
         print "Let's play rock, paper, scissors."
         
         while True:
@@ -31,8 +34,7 @@ class RPS(object):
                 print "What was that? Let's try again."
             else:
                 computer_hand = self.objects[randint(0, 2)]
-                winner = self.determine_winner(player_hand, computer_hand)
-            
+                winner = self.get_winner(player_hand, computer_hand)
                 print "Your %s versus my %s." % (player_hand, computer_hand)
                 if winner == -1:
                     print  "Draw."

@@ -12,6 +12,9 @@ class Game(object):
         self.player = characters.Player(0,10)
     
     def play(self):
+    	""" Loop to play a game. Player must reach level 10 to win without losing
+    	all health or leveling down below 0.
+    	"""
         print "\n", "=" * 50
         print "Goal: Reach level 10!"
         print self.player.get_stats()
@@ -19,11 +22,11 @@ class Game(object):
         while True:
             print "\n", "-" * 50
             
-            next_level = self.select_random_level()
+            next_level = self.get_random_level()
             next_level.enter()
             print self.player.get_stats()
             if self.player.health < 0 or self.player.level < 0:
-                self.game_over()
+                self.die()
             elif self.player.level == 10:
                 self.win()
             else:
@@ -37,11 +40,11 @@ class Game(object):
         print "~ ~ ~ Congratulations! You've won the game :) ~ ~ ~"
         exit(0)
         
-    def game_over(self):
+    def die(self):
         print ">>>GAME OVER<<<"
         exit(1)
         
-    def select_random_level(self):
+    def get_random_level(self):
         level_key = randint(1,2)
         #level_key = 2
         

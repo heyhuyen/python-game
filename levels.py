@@ -9,18 +9,22 @@ import coin_flip
 import rock_paper_scissors
 
 
+# TODO
+# Level for puzzle games like Hangman or Jumble
 class PuzzleLevel(object):
     
     def __init__(self, player):
         self.player = player
-    
 
+    
+# Level for fighting Monsters
 class MonsterLevel(object):
 
     def __init__(self, player):
         self.player = player
         
     def enter(self):
+    	""" Instantiate a monster and deal with it, then update player stats. """
         monster = characters.Monster(randint(1,10))
         print "Oh no! Looks like you've run into a monster. It's level is %d." % monster.level
         if monster.level >= self.player.level:
@@ -47,13 +51,15 @@ class MonsterLevel(object):
             self.player.level += 1
 
     
+# Chance games such as Heads or Tails and Rock, Paper, Scissors
 class ChanceLevel(object):
     
     def __init__(self, player):
         self.player = player
         
     def enter(self):
-        key = randint(0,1)
+    	""" Get and play a chance minigame and update player stats."""
+    	key = randint(0,1)
         minigame = self.get_minigame(key)
         win = minigame.play()
         if win == 1:
@@ -61,10 +67,11 @@ class ChanceLevel(object):
     		self.player.level += 1
     
     def get_minigame(self, key):
+    	""" Return minigame object."""
     	if key == 0:
         	return coin_flip.CoinFlip()
         else:
-            return rock_paper_scissors.RPS()
+            return rock_paper_scissors.RockPaperScissors()
             
         
     
