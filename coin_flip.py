@@ -2,29 +2,44 @@
 
 from random import randint
 from time import sleep
+import re
 
-dict = { 'head': 0, 'tails': 1}
-
-def play():
-    print "Let's flip a coin."
     
-    while True:
-        guess = raw_input("What's your guess?[head/tails]> ")
-        if guess != "head" and guess!= "tails":
-            print "Please guess 'head' or 'tails'"
+class CoinFlip(object):
+    
+    def __init__(self):
+        self.re_head = re.compile('heads?', re.IGNORECASE)
+        self.re_tail = re.compile('tails?', re.IGNORECASE)
+
+
+    def flip(self):
+        print "Flipping coin..."
+        sleep (2)
+        outcome = randint(0,1)
+        if outcome == 1:
+        	print "Tails."
         else:
-            guess = dict[guess]
-            print "Flipping coin..."
-            sleep (2)
-            outcome = randint(0,1)
-            if outcome == dict['head']:
-                print "Head."
-            else:
-                print "Tails."
-            if guess == outcome:
-                print "You win!"
-                return 1
-            else:
-                print "You lose."
-                return 0
+        	print "Heads."
+        return outcome
+            
+    def player_guess(self):
+    	guess = raw_input("What's your guess?[heads/tails]> ")
+    	if self.re_head.match(guess):
+            return 0
+        elif self.re_tail.match(guess):
+        	return 1
+        else:
+            print "Pardon?"
     
+    def play(self):
+        print "Let's flip a coin."
+        
+        while True:
+            guess = self.player_guess()
+            outcome = self.flip()
+            if guess == outcome:
+            	print "You guessed right!"
+            	return 1
+            else:
+            	print "You guessed wrong."
+            	return 0

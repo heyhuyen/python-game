@@ -9,7 +9,7 @@ import levels
 class Game(object):
 
     def __init__(self):
-        self.player = characters.Player(1,10)
+        self.player = characters.Player(0,10)
     
     def play(self):
         print "\n", "=" * 50
@@ -19,30 +19,31 @@ class Game(object):
         while True:
             print "\n", "-" * 50
             
-            if self.player.health < 0:
+            next_level = self.select_random_level()
+            next_level.enter()
+            print self.player.get_stats()
+            if self.player.health < 0 or self.player.level < 0:
                 self.game_over()
-            elif self.player.level == 3:
+            elif self.player.level == 10:
                 self.win()
             else:
-                next_level = self.select_random_level()
-                next_level.enter()
-                print self.player.get_stats()
                 keep_going = raw_input("Do you want to keep going?[y/n]> ")
                 if keep_going == "n":
                     print "Thanks for playing!"
                     exit(2)
-                        
+
+    
     def win(self):
-        print "Congratulations! You've won the game :)"
+        print "~ ~ ~ Congratulations! You've won the game :) ~ ~ ~"
         exit(0)
         
     def game_over(self):
-        print "GAME OVER"
+        print ">>>GAME OVER<<<"
         exit(1)
         
     def select_random_level(self):
-        #level_key = randint(0,2)
-        level_key = 2
+        level_key = randint(1,2)
+        #level_key = 2
         
         if level_key == 0:
             return levels.PuzzleLevel(self.player)
