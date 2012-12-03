@@ -12,9 +12,9 @@ class Game(object):
         self.player = characters.Player(0,10)
     
     def play(self):
-    	""" Loop to play a game. Player must reach level 10 to win without losing
-    	all health or leveling down below 0.
-    	"""
+        """ Loop to play a game. Player must reach level 10 to win without losing
+        all health or leveling down below 0.
+        """
         print "\n", "=" * 50
         print "Goal: Reach level 10!"
         print self.player.get_stats()

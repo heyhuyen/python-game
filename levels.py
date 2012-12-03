@@ -24,7 +24,7 @@ class MonsterLevel(object):
         self.player = player
         
     def enter(self):
-    	""" Instantiate a monster and deal with it, then update player stats. """
+        """ Instantiate a monster and deal with it, then update player stats. """
         monster = characters.Monster(randint(1,10))
         print "Oh no! Looks like you've run into a monster. It's level is %d." % monster.level
         if monster.level >= self.player.level:
@@ -58,18 +58,18 @@ class ChanceLevel(object):
         self.player = player
         
     def enter(self):
-    	""" Get and play a chance minigame and update player stats."""
-    	key = randint(0,1)
+        """ Get and play a chance minigame and update player stats."""
+        key = randint(0,1)
         minigame = self.get_minigame(key)
         win = minigame.play()
         if win == 1:
-        	print "+1 level up."
-    		self.player.level += 1
+            print "+1 level up."
+            self.player.level += 1
     
     def get_minigame(self, key):
-    	""" Return minigame object."""
-    	if key == 0:
-        	return coin_flip.CoinFlip()
+        """ Return minigame object."""
+        if key == 0:
+            return coin_flip.CoinFlip()
         else:
             return rock_paper_scissors.RockPaperScissors()
             

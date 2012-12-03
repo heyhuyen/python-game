@@ -15,7 +15,7 @@ class RockPaperScissors(object):
         self.objects = ("rock", "paper", "scissors")
 
     def get_winner(self, hand_a, hand_b):
-    	""" Compare hand_a and hand_b and return the winner. """
+        """ Compare hand_a and hand_b and return the winner. """
         if hand_b == self.whatbeats[hand_a]:
             return 1
         elif hand_a == self.whatbeats[hand_b]:
@@ -24,7 +24,7 @@ class RockPaperScissors(object):
             return -1
 
     def play(self):
-    	""" Loop to play a single round of rock, paper, scissors and returns win status. """
+        """ Loop to play a single round of rock, paper, scissors and returns win status. """
         print "Let's play rock, paper, scissors."
         
         while True:
